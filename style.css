@@ -32,6 +32,10 @@ body{
     margin-top: 1rem;
 }
 
+.imgMarca:hover{
+    opacity: 0.3;
+}
+
 #contenedorMarcas{
     justify-content: center;
     display: flex;
@@ -40,6 +44,62 @@ body{
     align-items: center;
 }
 
-img:hover {
-    opacity: 0.3;
+
+#contenedorAdidas{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 60px;
+    text-align: center;
+}
+
+#contenedorNike{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 60px;
+    text-align: center;
+}
+
+#contenedorUnderArmour{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 60px;
+    text-align: center;
+}
+
+.imgProductos{
+    width:150px;
+    height: 150px;
+    object-fit: contain;
+    margin-top: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin:0.5rem;
+    background-color: black;
+    color: white;
+}
+
+.colorBoton{
+    color:black;
+    background-color: white;
+}
+.colorBoton:hover{
+    background-color: grey;
+    color:white;
+}
+
+/* **CARRITO** */
+
+.botonCarritoVaciar{
+    text-align: center;
+}
+
+.tituloCarrito{
+    font-size: 60px;
 }
