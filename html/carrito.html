@@ -19,18 +19,22 @@
     </div>
 
     <!-- ** CARRITO DE COMPRAS ** -->
-    <h2 class="text-center tituloCarrito">CARRITO DE COMPRAS</h2>
-    <h3 class="text-center"> El total de su compra es:<span id="total"></span></h3>
+    <h2 class="text-center tituloCarrito">CARRITO</h2>
     
-    <div id="contenedorCarrito" class="row"></div>
-
-
-
-    <!-- Botón vaciar carrito -->
-    <div class="botonCarritoVaciar">
-        <button class="btn colorBoton" id="vaciarCarrito">Vaciar Carrito</button>
+    <!-- Botón para ver los productos seleccionados -->
+    <div class="botonesDelCarrito">
+        <button class="btn colorBotonCarrito" id="verCarrito">Ver productos seleccionados</button>
     </div>
     
+    <!-- Contenedor del carrito (muestra de los productosa seleccionados por el usuario) -->
+    <div id="contenedorCarrito" class="row"></div>
+
+    <!-- Botón vaciar carrito -->
+    <div class="botonesDelCarrito">
+        <button class="btn colorBotonCarrito" id="vaciarCarrito">Vaciar Carrito</button>
+    </div>
+    
+    <h3 class="text-center"> El total de su compra es: <span id="total"></span> </h3>
 
     <!-- JS BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -1,3 +1,18 @@
+// Nombre: Emilio Berber Maldonado
+// Proyecto: Sport Outlet
+// Curso: JavaScript
+// Requisitos del Proyecto Final:
+//      1) Objetos y Arrays. 
+//      2) Métodos de Arrays.
+//      3) Funciones y condicionales.
+//      4) Generación del DOM de forma dinámica. 
+//      5) Eventos.
+//      6) Sintaxis avanzada.
+//      7) Al menos una librería de uso relevante para el proyecto.
+//      8) Manejo de promesas con fetch. 
+//      9) Carga de datos desde un JSON local o desde una API externa
+
+// ** MARCAS ** //
 // Clase de marcas en el index de forma dinámica usando DOM
 class Marca{
     constructor(nombre, img){
@@ -45,9 +60,6 @@ class Productos {
     }
 }
 
-// Array carrito (se inicializa vacío para posteriormente ir agregando los productos):
-const carrito = [];
-
 // Creación de productos (objetos) de la marca Adidas
 const gorraA = new Productos(1, "Gorra", 500, "Gorra Adidas Gris Unisex Unitalla", "../img/gorra_adidas.png");
 const sudaderaA = new Productos(2, "Sudadera", 1800, "Sudadera Adidas Gris Para Hombre Talla Small", "../img/sudadera_adidas.png");
@@ -67,6 +79,16 @@ const productosAdidas = [gorraA, sudaderaA, tenisA];
 const productosNike = [camisetaN, shortN, sudaderaN];
 // Array de todos los productos de Under Armour:
 const productosUA = [gorraUA, camisaUA, camisetaUA];
+// Array de todos los productos del outlet
+const todosLosProductos = [gorraA, sudaderaA, tenisA, camisetaN, shortN, sudaderaN, gorraUA, camisaUA, camisetaUA];
+
+// Array carrito (se inicializa vacío para posteriormente ir agregando los productos):
+let carrito = [];
+
+// localStorage 
+if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem("carrito"));
+}
 
 // DOM para mostrar los productos de adidas en cards
 const contenedorAdidas = document.getElementById("contenedorAdidas");
@@ -96,7 +118,6 @@ const mostrarProductosA = () =>{
         boton.addEventListener("click", ()=>{
             agregarAlCarrito(producto.id);
         })
-        console.log(carrito);
     })
 }
 // Función para mostrar los productos de Nike
@@ -115,6 +136,11 @@ const mostrarProductosN = () =>{
                         </div>
                         `
         contenedorNike.appendChild(card);
+        // Agregar productos al carrito:
+        const boton = document.getElementById(`boton${producto.id}`);
+        boton.addEventListener("click", ()=>{
+            agregarAlCarrito(producto.id);
+        })
     })
 }
 // Función para mostrar los productos de Under Armour
@@ -133,6 +159,11 @@ const mostrarProductosUA = () =>{
                         </div>
                         `
         contenedorUnderArmour.appendChild(card);
+        // Agregar productos al carrito:
+        const boton = document.getElementById(`boton${producto.id}`);
+        boton.addEventListener("click", ()=>{
+            agregarAlCarrito(producto.id);
+        })
     })
 }
 
@@ -149,9 +180,12 @@ const agregarAlCarrito = (id) =>{
     if(productoEnCarrito){
         productoEnCarrito.cantidad++;
     }else{
-        const producto = productosAdidas.find(producto => producto.id === id);
+        const producto = todosLosProductos.find(producto => producto.id === id);
         carrito.push(producto);
     }
+    console.log(carrito);
+    // localStorage para agregar al carrito:
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 // Mostrar el carrito de compras:
@@ -173,12 +207,52 @@ const mostrarCarrito = () =>{
                             <img src="${producto.img}" class="card-img-top imgProductos">
                             <div class="card-body">
                                 <h5>${producto.nombre}</h5>
-                                <p>${producto.precio}</p>
+                                <p>$${producto.precio} mx</p>
                                 <p>${producto.cantidad}</p>
                                 <button class="btn colorBoton" id="eliminar${producto.id}">Eliminar Producto</button>
                             </div>
                         </div>
                         `
         contenedorCarrito.appendChild(card);
+        // Eliminar productos del carrito
+        const boton = document.getElementById(`eliminar${producto.id}`);
+        boton.addEventListener("click", ()=>{
+            eliminarProductoDelCarrito(producto.id);
+        })
     })
+    calcularElTotal();
+}
+
+// Elimiar CADA producto del carrito
+const eliminarProductoDelCarrito = (id) =>{
+    const producto = carrito.find(producto => producto.id === id);
+    const index = carrito.indexOf(producto);
+    carrito.splice(index, 1);
+    mostrarCarrito();
+    // localStorage para cuando se borre un producto del carrito 
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Eliminar TODOS los productos del carrito cuando de click el vaciar carrito
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+vaciarCarrito.addEventListener("click", ()=>{
+    vaciarTodoElCarrito();
+})
+// Función para vaciar todo el carrito
+const vaciarTodoElCarrito = () =>{
+    carrito = []; // El array se hace vacío
+    mostrarCarrito();
+    // localStorage para cuando se quiera vaciar todo el carrito
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+// Mostrar el total de la compra
+const total = document.getElementById("total");
+// Función para calcular el total
+const calcularElTotal = () =>{
+    let totalCompra = 0;
+    carrito.find(producto =>{
+        totalCompra += producto.precio * producto.cantidad;
+    })
+    total.innerHTML = ` $${totalCompra} mx`;
 }

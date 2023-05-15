@@ -96,10 +96,23 @@ body{
 
 /* **CARRITO** */
 
-.botonCarritoVaciar{
+.botonesDelCarrito{
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.colorBotonCarrito{
+    background-color: black;
+    color: white;
+}
+
+.colorBotonCarrito:hover{
+    background-color: grey;
+    color: white;
 }
 
 .tituloCarrito{
     font-size: 60px;
+    margin-top: 50px;
 }
