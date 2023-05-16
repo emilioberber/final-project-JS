@@ -9,8 +9,7 @@
 //      5) Eventos.
 //      6) Sintaxis avanzada.
 //      7) Al menos una librería de uso relevante para el proyecto.
-//      8) Manejo de promesas con fetch. 
-//      9) Carga de datos desde un JSON local o desde una API externa
+//      8) Manejo de promesas con fetch para Carga de datos desde un JSON local o desde una API externa
 
 // ** MARCAS ** //
 // Clase de marcas en el index de forma dinámica usando DOM
@@ -61,17 +60,17 @@ class Productos {
 }
 
 // Creación de productos (objetos) de la marca Adidas
-const gorraA = new Productos(1, "Gorra", 500, "Gorra Adidas Gris Unisex Unitalla", "../img/gorra_adidas.png");
-const sudaderaA = new Productos(2, "Sudadera", 1800, "Sudadera Adidas Gris Para Hombre Talla Small", "../img/sudadera_adidas.png");
-const tenisA = new Productos(3, "Tenis", 2000, "Tenis Adidas Blancos Para Tennis Unisex", "../img/tenis_adidas.png");
+const gorraA = new Productos(1, "Gorra", 11000, "Gorra Adidas Gris Unisex Unitalla", "../img/gorra_adidas.png");
+const sudaderaA = new Productos(2, "Sudadera", 30000, "Sudadera Adidas Gris Para Hombre Talla Small", "../img/sudadera_adidas.png");
+const tenisA = new Productos(3, "Tenis", 38000, "Tenis Adidas Blancos Para Tennis Unisex", "../img/tenis_adidas.png");
 // Creación de productos (objetos) de la marca Nike
-const camisetaN = new Productos(4, "Camiseta", 280, "Camisera Nike Negra Para Hombre Talla Large", "../img/camiseta_nike.png");
-const shortN = new Productos(5, "Short", 570, "Short Nike Negro Con Logo Blanco Unisex Talla Medium", "../img/short_nike.png");
-const sudaderaN = new Productos(6, "Sudadera", 2500, "Sudadera Nike Negra Con Cierre Unisex Talla XSmall", "../img/sudadera_nike.png");
+const camisetaN = new Productos(4, "Camiseta", 11500, "Camisera Nike Negra Para Hombre Talla Large", "../img/camiseta_nike.png");
+const shortN = new Productos(5, "Short", 27000, "Short Nike Negro Con Logo Blanco Unisex Talla Medium", "../img/short_nike.png");
+const sudaderaN = new Productos(6, "Sudadera", 35000, "Sudadera Nike Negra Con Cierre Unisex Talla XSmall", "../img/sudadera_nike.png");
 // Creación de productos (objetos) de la marca Under Armour
-const gorraUA = new Productos(7, "Gorra", 320, "Gorra Under Armour Naranja Unisex Unitalla", "../img/gorra_UA.png");
-const camisaUA = new Productos(8, "Camisa", 1000, "Camisa Under Armour Azul Unisex Para Tennis Talla Small", "../img/camisa_UA.png");
-const camisetaUA = new Productos(9, "Camiseta", 650, "Camiseta Under Armour Gris Para Hombre Talla Large", "../img/camiseta_UA.png");
+const gorraUA = new Productos(7, "Gorra", 12690, "Gorra Under Armour Naranja Unisex Unitalla", "../img/gorra_UA.png");
+const camisaUA = new Productos(8, "Camisa", 15800, "Camisa Under Armour Azul Unisex Para Tennis Talla Small", "../img/camisa_UA.png");
+const camisetaUA = new Productos(9, "Camiseta", 11900, "Camiseta Under Armour Gris Para Hombre Talla Large", "../img/camiseta_UA.png");
 
 // Array de todos los productos de adidas:
 const productosAdidas = [gorraA, sudaderaA, tenisA];
@@ -107,7 +106,7 @@ const mostrarProductosA = () =>{
                             <img src="${producto.img}" class="card-img-top imgProductos">
                             <div class="card-body">
                                 <h5>${producto.nombre}</h5>
-                                <p>$${producto.precio} mx</p>
+                                <p>$${producto.precio} ARG</p>
                                 <button class="btn colorBoton" id="boton${producto.id}">Agregar al Carrito</button>
                             </div>
                         </div>
@@ -130,7 +129,7 @@ const mostrarProductosN = () =>{
                             <img src="${producto.img}" class="card-img-top imgProductos">
                             <div class="card-body">
                                 <h5>${producto.nombre}</h5>
-                                <p>$${producto.precio} mx</p>
+                                <p>$${producto.precio} ARG</p>
                                 <button class="btn colorBoton" id="boton${producto.id}">Agregar al Carrito</button>
                             </div>
                         </div>
@@ -153,7 +152,7 @@ const mostrarProductosUA = () =>{
                             <img src="${producto.img}" class="card-img-top imgProductos">
                             <div class="card-body">
                                 <h5>${producto.nombre}</h5>
-                                <p>$${producto.precio} mx</p>
+                                <p>$${producto.precio} ARG</p>
                                 <button class="btn colorBoton" id="boton${producto.id}">Agregar al Carrito</button>
                             </div>
                         </div>
@@ -207,7 +206,7 @@ const mostrarCarrito = () =>{
                             <img src="${producto.img}" class="card-img-top imgProductos">
                             <div class="card-body">
                                 <h5>${producto.nombre}</h5>
-                                <p>$${producto.precio} mx</p>
+                                <p>$${producto.precio} ARG</p>
                                 <p>${producto.cantidad}</p>
                                 <button class="btn colorBoton" id="eliminar${producto.id}">Eliminar Producto</button>
                             </div>
@@ -236,7 +235,27 @@ const eliminarProductoDelCarrito = (id) =>{
 // Eliminar TODOS los productos del carrito cuando de click el vaciar carrito
 const vaciarCarrito = document.getElementById("vaciarCarrito");
 vaciarCarrito.addEventListener("click", ()=>{
-    vaciarTodoElCarrito();
+    if(carrito.length > 0){
+        /* Libreriía Sweet Alert - Vaciar carrito */
+        Swal.fire({
+            title: "Eliminar TODO el carrito",
+            text: "¿Seguro que desea eliminar todos los productos del carrito?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, borrar todo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            Swal.fire(
+                'Borrado!',
+                'Tu carrito ha sido borrado exitosamente',
+                'success'
+            )
+            vaciarTodoElCarrito();
+            }
+        })
+    }
 })
 // Función para vaciar todo el carrito
 const vaciarTodoElCarrito = () =>{
@@ -254,5 +273,45 @@ const calcularElTotal = () =>{
     carrito.find(producto =>{
         totalCompra += producto.precio * producto.cantidad;
     })
-    total.innerHTML = ` $${totalCompra} mx`;
+    total.innerHTML = ` $${totalCompra} ARG`;
+    // Librería Sweet Alert
+    /* Botonón para Ir a pagar */
+    if(totalCompra > 0 && carrito !== []){
+        const botonPagar = document.getElementById("botonPagar");
+        botonPagar.addEventListener("click", ()=>{
+        Swal.fire({
+            title: "Tu compra ha sido exitosa!",
+            text: `Gracias por tu compra de: $${totalCompra} ARG`,
+            icon: "success",
+            confirmButtonText: "Aceptar"
+            })
+            contenedorCarrito.innerHTML = "";
+            divDolar.innerHTML="";
+            carrito = [];
+        })
+    }else{
+        const botonPagar = document.getElementById("botonPagar");
+        botonPagar.addEventListener("click", ()=>{
+            Swal.fire({
+                title: "Debes agregar algo para poder ir a pagar!",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+                })
+            })
+    }
+    // Añadiendo API:
+    const url = "https://criptoya.com/api/dolar";
+    const divDolar = document.getElementById("divDolar");
+    // Uso de fetch con promesas
+    setInterval(()=>{
+        fetch(url)
+        .then(response => response.json())
+        .then((currency)=> {
+            let valorMxAlDia = currency.oficial;
+            let totalCompraUSD = totalCompra/valorMxAlDia
+            divDolar.innerHTML = `<p>Dólar oficial al día de hoy: $${valorMxAlDia} ARG</p>
+                                  <p>Total en dólares: $${totalCompraUSD.toFixed(2)} USD</p>`
+        })
+        .catch(error => console.error(error))
+    }, 1000)
 }

@@ -31,13 +31,24 @@
 
     <!-- Botón vaciar carrito -->
     <div class="botonesDelCarrito">
-        <button class="btn colorBotonCarrito" id="vaciarCarrito">Vaciar Carrito</button>
+        <button class="btn btn-danger" id="vaciarCarrito">Vaciar Carrito</button>
     </div>
     
     <h3 class="text-center"> El total de su compra es: <span id="total"></span> </h3>
 
+    <div id="divDolar" class="row text-center"></div>
+
+    <!-- Agregamos botón para ir a pagar usando librería -->
+    <div class="botonesDelCarrito">
+        <button class="btn colorBotonCarrito m-3" id="botonPagar">Ir a pagar</button>
+    </div>
+
+
+
     <!-- JS BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Librería Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JS -->
     <script src="../main.js"></script>
 </body>
