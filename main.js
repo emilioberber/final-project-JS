@@ -253,6 +253,7 @@ vaciarCarrito.addEventListener("click", ()=>{
                 'success'
             )
             vaciarTodoElCarrito();
+            localStorage.setItem("carrito",[]);
             }
         })
     }
